@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ulas Il • Modern Landing Page</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.08);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --radius: 14px;
+      --shadow: 0 18px 45px rgba(15,23,42,0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(148,163,184,0.2);
+      box-shadow: 0 16px 45px rgba(15,23,42,0.8);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #e5e7eb 0, #38bdf8 35%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #020617;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 13px;
+      color: var(--text);
+      background: linear-gradient(135deg,#38bdf8,#0ea5e9);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 8px 25px rgba(56,189,248,0.4);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 35px rgba(56,189,248,0.6);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 40px;
+      margin-top: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.35);
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.35);
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 40px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg,#38bdf8,#22d3ee,#a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.25);
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .primary-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg,#38bdf8,#0ea5e9);
+      color: #0b1120;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 13px 40px rgba(56,189,248,0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(56,189,248,0.8);
+    }
+
+    .ghost-btn {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.8);
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .ghost-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(15,23,42,1);
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .hero-meta strong {
+      color: var(--accent);
+    }
+
+    /* Hero card */
+    .hero-card {
+      background: radial-gradient(circle at top,#1f2937 0,#020617 55%);
+      border-radius: 24px;
+      padding: 20px 20px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148,163,184,0.26);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .hero-avatar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 2px solid rgba(56,189,248,0.7);
+      background: url('https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400') center/cover;
+    }
+
+    .hero-avatar-info h3 {
+      font-size: 14px;
+    }
+
+    .hero-avatar-info p {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .status-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34,197,94,0.5);
+    }
+
+    .hero-card-body {
+      background: rgba(15,23,42,0.85);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(148,163,184,0.3);
+      margin-bottom: 14px;
+    }
+
+    .hero-card-body h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-body p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #e5e7eb;
+    }
+
+    .hero-metrics {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-metrics strong {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-top: 70px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* SERVICES */
+    .cards {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.95);
+      border-radius: var(--radius);
+      border: 1px solid rgba(148,163,184,0.32);
+      padding: 16px 16px 18px;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.8);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    /* PROCESS */
+    .process-steps {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .step {
+      background: rgba(15,23,42,0.9);
+      border-radius: 12px;
+      padding: 12px 12px 14px;
+      border: 1px solid rgba(148,163,184,0.3);
+      font-size: 12px;
+    }
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .step h4 {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .price-card {
+      background: rgba(15,23,42,0.96);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(148,163,184,0.35);
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(56,189,248,0.5);
+      transform: translateY(-4px);
+    }
+
+    .price-name {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .price-value {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .price-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .price-list {
+      list-style: none;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .price-list li {
+      margin-bottom: 4px;
+    }
+
+    .price-list li::before {
+      content: "✓ ";
+      color: #22c55e;
+    }
+
+    .price-btn {
+      width: 100%;
+      padding: 8px 0;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.95);
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .price-card.featured .price-btn {
+      background: linear-gradient(135deg,#38bdf8,#0ea5e9);
+      border-color: transparent;
+      color: #020617;
+    }
+
+    .price-btn:hover {
+      border-color: var(--accent);
+      background: rgba(15,23,42,1);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0,2.2fr) minmax(0,2fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .contact-card {
+      background: rgba(15,23,42,0.96);
+      border-radius: 16px;
+      padding: 16px 16px 18px;
+      border: 1px solid rgba(148,163,184,0.32);
+    }
+
+    .contact-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .contact-form {
+      font-size: 12px;
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-btn {
+      margin-top: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg,#38bdf8,#0ea5e9);
+      color: #020617;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(15,23,42,0.9);
+    }
+
+    footer span {
+      color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav {
+        padding-inline: 14px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+      }
+      .hero-card {
+        order: -1;
+      }
+      .cards,
+      .pricing-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+      .process-steps {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+      .cards,
+      .pricing-grid,
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        gap: 26px;
+      }
+      section {
+        margin-top: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">U</div>
+        <div>
+          <div class="nav-title">Ulas Il Studio</div>
+          <div style="font-size:11px;color:var(--muted);">Web • Etsy • Translation</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Packages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-cta">Request a Quote</button>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">
+            <div class="eyebrow-dot"></div>
+            Available for new projects
+          </div>
+          <h1>Modern, <span>conversion-focused</span> landing pages for your brand.</h1>
+          <p class="hero-sub">
+            I design clean, responsive landing pages tailored for digital products, Etsy shops and personal brands — optimized for clarity, trust and conversions.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge">Etsy & digital products</div>
+            <div class="badge">Copy & translation support</div>
+            <div class="badge">Fast delivery options</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="primary-btn">
+              Get your landing page
+              <span>→</span>
+            </button>
+            <button class="ghost-btn">View example structure</button>
+          </div>
+          <p class="hero-meta">
+            Typical delivery: <strong>3–5 days</strong> · Includes basic SEO, responsive layout and content guidance.
+          </p>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-avatar">
+              <div class="avatar-circle"></div>
+              <div class="hero-avatar-info">
+                <h3>Ulas Il</h3>
+                <p>Designer • Translator • Etsy-focused</p>
+              </div>
+            </div>
+            <div class="status-pill">New seller · High response</div>
+          </div>
+
+          <div class="hero-card-body">
+            <h4>Landing page package overview</h4>
+            <p>
+              One-page website including hero, services, process and contact, plus content review in Turkish or English.
+            </p>
+            <div class="hero-tags">
+              <span class="hero-tag">Responsive design</span>
+              <span class="hero-tag">Clear structure</span>
+              <span class="hero-tag">Copy assistance</span>
+              <span class="hero-tag">Etsy / digital niche</span>
+            </div>
+          </div>
+
+          <div class="hero-metrics">
+            <div>
+              <div>Delivery</div>
+              <strong>3 days</strong>
+            </div>
+            <div>
+              <div>Revisions</div>
+              <strong>Up to 3</strong>
+            </div>
+            <div>
+              <div>Languages</div>
+              <strong>TR / EN / RU*</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <p class="section-label">Services</p>
+        <h2 class="section-title">What I can build for you</h2>
+        <p class="section-sub">
+          A simple, focused landing page that explains who you are, what you offer and how clients can work with you — without unnecessary complexity.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Landing page layout</h3>
+            <p>Clear section structure designed for trust and conversions.</p>
+            <ul>
+              <li>Hero + value proposition</li>
+              <li>Services & benefits</li>
+              <li>Process & FAQs</li>
+              <li>Contact / booking section</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Content & translation</h3>
+            <p>Text support in Turkish and English, plus basic localization.</p>
+            <ul>
+              <li>Copy suggestions for each section</li>
+              <li>TR ↔ EN translation help</li>
+              <li>Tone & clarity improvements</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Technical delivery</h3>
+            <p>Ready-to-use files or export that your developer can implement.</p>
+            <ul>
+              <li>Responsive HTML/CSS structure</li>
+              <li>Clean, organized sections</li>
+              <li>Handover notes for developers</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process">
+        <p class="section-label">Process</p>
+        <h2 class="section-title">How we’ll work together</h2>
+        <p class="section-sub">
+          A short, transparent workflow — so you always know what the next step is and when you can expect the final version.
+        </p>
+
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h4>Brief & goals</h4>
+            <p>You share your business, target audience and main goal of the page (sales, leads, portfolio, etc.).</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h4>Wireframe</h4>
+            <p>I prepare a simple section-by-section layout and confirm structure with you before detailed design.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h4>Design & content</h4>
+            <p>Visual design, typography, spacing and copy suggestions in Turkish/English, plus basic responsiveness.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h4>Delivery & revisions</h4>
+            <p>You review, we refine details and I deliver final files (and notes for your developer if needed).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing">
+        <p class="section-label">Packages</p>
+        <h2 class="section-title">Simple package structure</h2>
+        <p class="section-sub">
+          You can keep these values or adapt them to match your Fiverr gig pricing. The structure mirrors a typical Basic / Standard / Premium offer.
+        </p>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-name">Basic</div>
+            <div class="price-value">$80</div>
+            <div class="price-note">Starter landing – 1 page, simple layout.</div>
+            <ul class="price-list">
+              <li>Single-section landing layout (hero + CTA)</li>
+              <li>Basic structure recommendations</li>
+              <li>Delivery in 3 days</li>
+            </ul>
+            <button class="price-btn">Best for MVPs</button>
+          </article>
+
+          <article class="price-card featured">
+            <div class="price-name">Standard</div>
+            <div class="price-value">$110</div>
+            <div class="price-note">Full one-page layout with content support.</div>
+            <ul class="price-list">
+              <li>Hero, services, process & contact sections</li>
+              <li>Copy guidance in Turkish / English</li>
+              <li>Responsive HTML/CSS structure</li>
+              <li>Up to 2 revisions</li>
+            </ul>
+            <button class="price-btn">Most popular</button>
+          </article>
+
+          <article class="price-card">
+            <div class="price-name">Premium</div>
+            <div class="price-value">$170</div>
+            <div class="price-note">Extended page & translation support.</div>
+            <ul class="price-list">
+              <li>All Standard features</li>
+              <li>Extra sections (FAQ, testimonials, etc.)</li>
+              <li>Full TR ↔ EN translation of page content</li>
+              <li>Priority support & 3 revisions</li>
+            </ul>
+            <button class="price-btn">For growing brands</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Tell me about your project</h2>
+        <p class="section-sub">
+          Share a short brief and I’ll respond with the best package for your needs, plus a realistic delivery date.
+        </p>
+
+        <div class="contact-box">
+          <div class="contact-card">
+            <p>
+              Use this contact form structure in your real website or Fiverr brief. It keeps things simple but gives enough context to start quickly.
+            </p>
+            <div class="contact-row">
+              <div class="pill">Business / project type</div>
+              <div class="pill">Main goal of the page</div>
+              <div class="pill">Deadline & language</div>
+            </div>
+            <p class="contact-note">
+              You can replace this text with your actual email or a link to your Fiverr gig once implemented.
+            </p>
+          </div>
+
+          <form class="contact-form">
+            <div class="field">
+              <label for="name">Name / brand</label>
+              <input id="name" type="text" placeholder="Your name or brand" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label for="message">Short project description</label>
+              <textarea id="message" placeholder="What do you need this landing page for?"></textarea>
+            </div>
+            <button type="button" class="form-btn">Send brief (example)</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span>Ulas Il</span> · Example landing page structure for portfolio / Fiverr.
+    </footer>
+  </div>
+</body>
+</html>
